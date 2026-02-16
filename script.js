@@ -51,8 +51,6 @@ loginBtn.addEventListener("click", () => {
         alert("Invalid login");
     }
 });
-Sent 12m ago
-Write to
 
     // ADD TO CART
     document.querySelectorAll(".add-to-cart").forEach(btn => {
@@ -175,6 +173,7 @@ Write to
 function closeModal() {
     orderModal.style.display = "none";
 }
+
 
 
 
