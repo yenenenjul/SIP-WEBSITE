@@ -10,29 +10,37 @@ document.addEventListener("DOMContentLoaded", () => {
     const studentName = document.getElementById("studentName");
 
     // LOGIN
-    const loginBtn = document.getElementById("loginBtn");
+   const loginBtn = document.getElementById("loginBtn");
 const username = document.getElementById("username");
 const password = document.getElementById("password");
 
 loginBtn.addEventListener("click", () => {
+
     const u = username.value.trim();
     const p = password.value.trim();
 
+    // ADMIN LOGIN (optional – keep if you still need admin)
     if (u === "admin" && p === "admin123") {
         location.href = "admin.html";
         return;
     }
 
-    if (u && p) {
-        currentUser = u;
-        studentName.textContent = "Hi, " + u;
+    // STUDENT PROTOTYPE LOGIN
+    if (u === "student" && p === "1234") {
+
+        currentUser = "student";
+        document.getElementById("studentName").textContent = "Hi, Student";
 
         Login.style.display = "none";
         Menu.style.display = "block";
+
     } else {
-        alert("Enter username & password");
+        alert("Invalid login");
     }
 });
+Sent 12m ago
+Write to
+
     // ADD TO CART
     document.querySelectorAll(".add-to-cart").forEach(btn => {
         btn.addEventListener("click", () => {
@@ -154,4 +162,5 @@ loginBtn.addEventListener("click", () => {
 function closeModal() {
     orderModal.style.display = "none";
 }
+
 
