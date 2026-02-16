@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>School Canteen Ordering</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Saint Michael Academy School Canteen</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <h1>🏫 School Canteen</h1>
+    <div class="logo-area">
+        <img src="logo.png" class="logo">
+        <h1>Saint Michael Academy<br><span>School Canteen</span></h1>
+    </div>
+
     <div class="user-area">
         <span id="studentName"></span>
         <button id="logoutBtn">Logout</button>
@@ -17,67 +21,64 @@
 </header>
 
 <!-- LOGIN -->
-<section id="Login">
+<section id="Login" class="card">
     <h2>Student Login</h2>
-    <input type="text" id="username" placeholder="Student Name">
+    <input type="text" id="username" placeholder="Username">
     <input type="password" id="password" placeholder="Password">
     <button id="loginBtn">Login</button>
-    <p class="hint">Student password: <b>1234</b> | Admin: <b>admin / admin123</b></p>
-</section>
-
-<!-- HOME -->
-<section id="Home" style="display:none;">
-    <h2>Welcome to the School Canteen</h2>
-    <p>Please order responsibly during school hours.</p>
 </section>
 
 <!-- MENU -->
 <section id="Menu" style="display:none;">
-    <h2>Canteen Menu</h2>
+    <h2>Menu</h2>
+
+    <!-- CATEGORY FILTER -->
+    <div class="categories">
+        <button data-category="all">All</button>
+        <button data-category="snacks">Snacks</button>
+        <button data-category="lunch">Lunch</button>
+        <button data-category="drinks">Drinks</button>
+    </div>
 
     <div class="menu-grid">
-        <div class="item">
+
+        <div class="item" data-category="lunch">
+            <img src="burger.jpg">
             <h3>Burger</h3>
             <p>₱50</p>
             <input type="number" min="1" value="1" class="qty">
             <button class="add-to-cart" data-item="Burger" data-price="50">Add</button>
         </div>
 
-        <div class="item">
+        <div class="item" data-category="snacks">
+            <img src="fries.jpg">
             <h3>Fries</h3>
             <p>₱30</p>
             <input type="number" min="1" value="1" class="qty">
             <button class="add-to-cart" data-item="Fries" data-price="30">Add</button>
         </div>
 
-        <div class="item">
+        <div class="item" data-category="drinks">
+            <img src="icedtea.jpg">
             <h3>Iced Tea</h3>
             <p>₱20</p>
             <input type="number" min="1" value="1" class="qty">
             <button class="add-to-cart" data-item="Iced Tea" data-price="20">Add</button>
         </div>
+
     </div>
 
-    <div class="checkout">
+    <div class="checkout card">
         <h3>Total: ₱<span id="total">0</span></h3>
-
-        <label>Pickup Time:</label>
-        <input type="time" id="pickupTime">
-
-        <label>Payment Method:</label>
-        <select id="payment">
-            <option>Pay at Counter</option>
-            <option>Online Payment</option>
-        </select>
-
         <button id="placeOrder">Place Order</button>
+        <button id="cancelOrder" class="danger">Cancel Order</button>
     </div>
 </section>
 
-<!-- ORDER MODAL -->
+<!-- CART MODAL -->
 <div id="orderModal" class="modal">
     <div class="modal-content">
-        <h3>Your Order</h3>
+        <h3>Your Cart</h3>
         <ul id="orderList"></ul>
         <button onclick="closeModal()">Close</button>
     </div>
