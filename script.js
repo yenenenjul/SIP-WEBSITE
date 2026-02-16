@@ -14,16 +14,29 @@ document.addEventListener("DOMContentLoaded", () => {
 const username = document.getElementById("username");
 const password = document.getElementById("password");
 
-loginBtn.addEventListener("click", () => {
+const Login = document.getElementById("Login"); // <-- add this
+const Menu = document.getElementById("Menu");   // <-- add this
+const studentName = document.getElementById("studentName");
 
+loginBtn.addEventListener("click", () => {
     const u = username.value.trim();
     const p = password.value.trim();
 
-    // ADMIN LOGIN (optional – keep if you still need admin)
+    // ADMIN LOGIN
     if (u === "admin" && p === "admin123") {
         location.href = "admin.html";
         return;
     }
+
+    // STUDENT LOGIN
+    if (u === "student" && p === "1234") {
+        studentName.textContent = "Hi, Student";
+        Login.style.display = "none";
+        Menu.style.display = "block";
+    } else {
+        alert("Invalid login");
+    }
+});
 
     // STUDENT PROTOTYPE LOGIN
     if (u === "student" && p === "1234") {
@@ -162,5 +175,6 @@ Write to
 function closeModal() {
     orderModal.style.display = "none";
 }
+
 
 
