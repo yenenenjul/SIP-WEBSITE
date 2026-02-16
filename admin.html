@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+    <style>
+        body { font-family: Arial; padding: 30px; }
+        h2 { color: #1e3a8a; }
+    </style>
+</head>
+<body>
+
+<h2>Admin – Student Orders</h2>
+<div id="orders"></div>
+
+<script>
+const ordersDiv = document.getElementById("orders");
+
+for (let i = 0; i < localStorage.length; i++) {
+    const student = localStorage.key(i);
+    const orders = JSON.parse(localStorage.getItem(student));
+
+    const div = document.createElement("div");
+    div.innerHTML = `<h4>${student}</h4><p>${orders.join(", ")}</p>`;
+    ordersDiv.appendChild(div);
+}
+</script>
+
+<h2>Admin Orders</h2>
+<div id="orders"></div>
+
+<script>
+const ordersDiv = document.getElementById("orders");
+
+for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (!key.startsWith("order_")) continue;
+
+    const order = JSON.parse(localStorage.getItem(key));
+
+    const div = document.createElement("div");
+    div.innerHTML = `
+        <h4>Order #${order.orderNumber}</h4>
+        <p>${order.student}</p>
+        <p>Total: ₱${order.total}</p>
+        <p>Status: ${order.status}</p>
+        <button onclick="ready('${key}')">Mark Ready</button>
+        <hr>
+    `;
+    ordersDiv.appendChild(div);
+}
+
+function ready(key) {
+    const order = JSON.parse(localStorage.getItem(key));
+    order.status = "READY";
+    localStorage.setItem(key, JSON.stringify(order));
+    alert("Order marked READY");
+    location.reload();
+}
+</script>
+
+
+</body>
+</html>
