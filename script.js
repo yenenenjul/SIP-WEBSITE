@@ -10,29 +10,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const studentName = document.getElementById("studentName");
 
     // LOGIN
-    loginBtn.addEventListener("click", () => {
-        const u = username.value.trim();
-        const p = password.value.trim();
+    const loginBtn = document.getElementById("loginBtn");
+const username = document.getElementById("username");
+const password = document.getElementById("password");
 
-        if (u === "admin" && p === "admin123") {
-            location.href = "admin.html";
-            return;
-        }
+loginBtn.addEventListener("click", () => {
+    const u = username.value.trim();
+    const p = password.value.trim();
 
-        if (u && p) {
-            currentUser = u;
-            studentName.textContent = "Hi, " + u;
+    if (u === "admin" && p === "admin123") {
+        location.href = "admin.html";
+        return;
+    }
 
-            Login.style.display = "none";
-            Menu.style.display = "block";
+    if (u && p) {
+        currentUser = u;
+        studentName.textContent = "Hi, " + u;
 
-            cart = JSON.parse(localStorage.getItem("cart_" + u)) || [];
-            updateCart();
-        } else {
-            alert("Enter username & password");
-        }
-    });
-
+        Login.style.display = "none";
+        Menu.style.display = "block";
+    } else {
+        alert("Enter username & password");
+    }
+});
     // ADD TO CART
     document.querySelectorAll(".add-to-cart").forEach(btn => {
         btn.addEventListener("click", () => {
@@ -154,3 +154,4 @@ document.addEventListener("DOMContentLoaded", () => {
 function closeModal() {
     orderModal.style.display = "none";
 }
+
