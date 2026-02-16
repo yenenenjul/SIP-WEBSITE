@@ -5,52 +5,41 @@ document.addEventListener("DOMContentLoaded", () => {
     let total = 0;
 
     const loginBtn = document.getElementById("loginBtn");
+    const username = document.getElementById("username");
+    const password = document.getElementById("password");
+    const Login = document.getElementById("Login");
+    const Menu = document.getElementById("Menu");
+
     const cartCount = document.querySelector(".cart-count");
     const totalSpan = document.getElementById("total");
     const studentName = document.getElementById("studentName");
+    const placeOrder = document.getElementById("placeOrder");
+    const cancelOrder = document.getElementById("cancelOrder");
+    const orderModal = document.getElementById("orderModal");
 
-    // LOGIN
-   const loginBtn = document.getElementById("loginBtn");
-const username = document.getElementById("username");
-const password = document.getElementById("password");
+    // LOGIN ✅
+    loginBtn.addEventListener("click", () => {
 
-const Login = document.getElementById("Login"); // <-- add this
-const Menu = document.getElementById("Menu");   // <-- add this
-const studentName = document.getElementById("studentName");
+        const u = username.value.trim();
+        const p = password.value.trim();
 
-loginBtn.addEventListener("click", () => {
-    const u = username.value.trim();
-    const p = password.value.trim();
+        if (u === "admin" && p === "admin123") {
+            location.href = "admin.html";
+            return;
+        }
 
-    // ADMIN LOGIN
-    if (u === "admin" && p === "admin123") {
-        location.href = "admin.html";
-        return;
-    }
+        if (u === "student" && p === "1234") {
 
-    // STUDENT LOGIN
-    if (u === "student" && p === "1234") {
-        studentName.textContent = "Hi, Student";
-        Login.style.display = "none";
-        Menu.style.display = "block";
-    } else {
-        alert("Invalid login");
-    }
-});
+            currentUser = "student";
+            studentName.textContent = "Hi, Student";
 
-    // STUDENT PROTOTYPE LOGIN
-    if (u === "student" && p === "1234") {
+            Login.style.display = "none";
+            Menu.style.display = "block";
 
-        currentUser = "student";
-        document.getElementById("studentName").textContent = "Hi, Student";
-
-        Login.style.display = "none";
-        Menu.style.display = "block";
-
-    } else {
-        alert("Invalid login");
-    }
-});
+        } else {
+            alert("Invalid login");
+        }
+    });
 
     // ADD TO CART
     document.querySelectorAll(".add-to-cart").forEach(btn => {
@@ -101,7 +90,7 @@ loginBtn.addEventListener("click", () => {
     placeOrder.addEventListener("click", () => {
         if (!cart.length) return alert("Cart empty");
 
-        const orderNumber = Math.floor(Math.random() * 9000) + 1000; // SHORT #
+        const orderNumber = Math.floor(Math.random() * 9000) + 1000;
 
         const order = {
             orderNumber,
@@ -135,6 +124,7 @@ loginBtn.addEventListener("click", () => {
     }
 
     function saveCart() {
+        if (!currentUser) return;
         localStorage.setItem("cart_" + currentUser, JSON.stringify(cart));
     }
 
@@ -152,7 +142,7 @@ loginBtn.addEventListener("click", () => {
         });
     });
 
-    // READY NOTIFICATION
+    // READY NOTIFICATION ✅ FIXED ALERT
     setInterval(() => {
         if (!currentUser) return;
 
@@ -168,12 +158,9 @@ loginBtn.addEventListener("click", () => {
             }
         }
     }, 4000);
+
 });
 
 function closeModal() {
-    orderModal.style.display = "none";
+    document.getElementById("orderModal").style.display = "none";
 }
-
-
-
-
